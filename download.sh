@@ -5,4 +5,5 @@ curl -L0 https://arquivos.b3.com.br/apinegocios/tickercsv/$DATE --output ./$DATE
 unzzip *.zip
 rm *.zip
 mv *.txt $DATE.txt
+./mktparser ./$DATE.txt ./$DATE.output.txt
 
