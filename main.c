@@ -208,7 +208,7 @@ int read_file(char* file_path, char* result_path) {
     // printf("current trade session id: %s\n", current.trade_session_id);
     // printf("current trade date: %s\n", current.trade_date);
     parse_trade_order(&arr_struct, &current, result_report_ptr);
-    printf("count: %lu\n", arr_struct.count);
+    // printf("count: %lu\n", arr_struct.count);
   }
   printf("\n");
   fclose(original_report_ptr);
@@ -227,9 +227,14 @@ int read_file(char* file_path, char* result_path) {
   return 0;
 }
 
-int main() {
+int main(int argc, char *argv[]) {
   // int test = read_file("example-files/test.txt", "result.txt");
-  int test = read_file("example-files/TradeIntraday_20211126_1.txt", "result.txt");
+  if (argc != 3) {
+    printf("USAGE: mktparser [path-to-input] [path-to-output]\n");
+    return 1;
+  }
+  printf("Parsing file: %s ...\n", argv[1]);
+  int test = read_file(argv[1], argv[2]);
   printf("result: %d\n", test);
   return 0;
 }
